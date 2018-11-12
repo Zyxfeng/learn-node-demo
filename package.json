@@ -1,0 +1,19 @@
+{
+  "name": "node-demo",
+  "version": "1.0.0",
+  "description": "learn node demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "latest",
+    "async": "latest",
+    "body-parser": "latest",
+    "request": "latest",
+    "hget": "latest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
