@@ -11,7 +11,8 @@
     "async": "latest",
     "body-parser": "latest",
     "request": "latest",
-    "hget": "latest"
+    "hget": "latest",
+    "asyncawait": "latest"
   },
   "keywords": [],
   "author": "",
