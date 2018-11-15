@@ -12,7 +12,10 @@
     "body-parser": "latest",
     "request": "latest",
     "hget": "latest",
-    "asyncawait": "latest"
+    "asyncawait": "latest",
+    "koa": "latest",
+    "koa-router": "^7.4.0",
+    "koa-parser": "^1.0.5"
   },
   "keywords": [],
   "author": "",
