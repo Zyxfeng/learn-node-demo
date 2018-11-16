@@ -17,3 +17,4 @@ const hong_secret = hong.computeSecret(ming_key);
 
 console.log('Secret of Xiaoming: ' + ming_secret.toString('hex'));
 console.log('Secret of Xiaohong: ' + hong_secret.toString('hex'));
+
