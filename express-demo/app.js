@@ -10,6 +10,10 @@ const pkg = require('./package')
 
 const router = require('./routes')
 
+// 引入winston和express-winston记录日志
+const winston = require('winston')
+const expressWinston = require('express-winston')
+
 // const bodyParser = require('body-parser')
 
 const app = express()
@@ -59,8 +63,34 @@ app.use(function (req, res, next) {
   next()
 })
 
+// 正常请求的日志
+app.use(expressWinston.logger({
+  transports: [
+    new (winston.transports.Console)({
+      json: true,
+      colorize: true
+    }),
+    new (winston.transports.File)({
+      filename: 'logs/success.log'
+    })
+  ]
+}))
+
 app.use('/signup', require('./routes/signup'))
 router(app)
+
+// 错误请求的日志
+app.use(expressWinston.errorLogger({
+  transports: [
+    new winston.transports.Console({
+      json: true,
+      colorize: true
+    }),
+    new winston.transports.File({
+      filename: 'logs/error.log'
+    })
+  ]
+}))
 
 app.use(function (err, req, res, next) {
   console.error(err)
