@@ -1,31 +1,16 @@
-const express = require('express')
-
-const router = express.Router();
-
-const userDao = require('../dao/userDao');
-
-router.get('/', (req, res, next) => {
-    res.send(`<h1>Hello express</h1>`);
-});
-
-router.get('/addUser', (req, res, next) => {
-    userDao.add(req, res, next);
-});
-
-router.get('/users', (req, res, next) => {
-    userDao.queryAll(req, res, next);
-});
-
-router.get('/user/:id', (req, res, next) => {
-    userDao.queryById(req, res,next);
-});
-
-router.get('/delUser/:id', (req, res, next) => {
-    userDao.delete(req, res, next);
-});
-
-router.get('/updateUser', (req, res, next) => {
-    userDao.update(req, res, next);
-});
-
-module.exports = router;
+module.exports = function (app) {
+  app.get('/', function (req, res) {
+    res.redirect('/posts')
+  })
+  app.use('/signup', require('./signup'))
+  app.use('/signin', require('./signin'))
+  app.use('/signout', require('./signout'))
+  app.use('/posts', require('./posts'))
+  app.use('/comments', require('./comments'))
+  // 404 page
+  app.use(function (req, res) {
+    if (!res.headersSent) {
+      res.status(404).render('404')
+    }
+  })
+}
