@@ -98,6 +98,12 @@ app.use(function (err, req, res, next) {
   res.redirect('/posts')
 })
 
-app.listen(config.port, function () {
-  console.log(`${pkg.name} listening on port ${config.port}`)
-})
+if (module.parent) {
+  // 被require时则导出，用于测试
+  module.exports = app
+} else {
+  // 监听端口，启动程序
+  app.listen(config.port, function () {
+    console.log(`${pkg.name} listening on port ${config.port}`)
+  })
+}

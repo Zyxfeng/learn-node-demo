@@ -18,7 +18,6 @@ router.post('/', checkNotLogin, function (req, res, next) {
   const name = req.fields.name
   const gender = req.fields.gender
   const bio = req.fields.bio
-  const avatar = req.files.avatar.path.split(path.sep).pop()
   let password = req.fields.password
   const repassword = req.fields.repassword
 
@@ -48,6 +47,7 @@ router.post('/', checkNotLogin, function (req, res, next) {
     req.flash('error', e.message)
     return res.redirect('/signup')
   }
+  const avatar = req.files.avatar.path.split(path.sep).pop()
   password = sha1(password)
 
   let user = {
